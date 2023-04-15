@@ -1,0 +1,50 @@
+<html>
+<body>
+<center>
+<h1>RSA Algorithm</h1>
+
+<form action="JavaScript:RSA()" ><pre>
+    <p>Enter 1st Prime:<input type="number" value="7"  id="p"></p>
+    <p>Enter 2nd Prime:<input type="number" value="11" id="q"></p>
+    <p>Enter Message  :<input type="number" value="45" id="msg"></p>
+    </pre>
+    Public Key     :<p id="publickey"></p>
+    Exponent       :<p id="exponent"></p>
+    Private Key    :<p id="privatekey"></p>
+    Cipher Text    :<p id="ciphertext"></p>
+    <input type="submit" Value="Calculate RSA"><br>
+
+</form>
+</center>
+
+</body>
+<script type="text/javascript">
+function RSA()
+{
+var gcd, p, q, no, n, t, e, i, x;
+gcd = function (a, b) { return (!b) ? a : gcd(b, a % b); };
+p = document.getElementById('p').value;
+q = document.getElementById('q').value;
+no = document.getElementById('msg').value;
+n = p * q;
+t = (p - 1) * (q - 1);
+for (e = 2; e < t; e++){
+if (gcd(e, t) == 1) break;
+}
+for (i = 0; i < 10; i++){
+x = 1 + i * t
+if (x % e == 0){
+d = x / e;
+break;
+}}
+ctt = Math.pow(no, e).toFixed(0);
+ct = ctt % n;
+dtt = Math.pow(ct, d).toFixed(0);
+dt = dtt % n;
+document.getElementById('publickey').innerHTML = n;
+document.getElementById('exponent').innerHTML = e;
+document.getElementById('privatekey').innerHTML = d;
+document.getElementById('ciphertext').innerHTML = ct;
+}
+</script>
+</html>
