@@ -27,48 +27,21 @@ import java.util.*;
 
 public class Main
 {
-    
-    public static String encryp(String s,int k){
-        String res="";
-        for(int i=0;i<s.length();i++){
-            int f=0;
-            char a=s.charAt(i);
-            if(Character.isUpperCase(a)) f=1;
-            a=Character.toLowerCase(a);
-            int p=(int)(a-'a');
-            char c=(char)((p+k)%26);
-            char ch='a';
-            if(f==1) ch='A';
-            res+=(char)(c+ch);
-        }
-        return res;
-    }
-    
-    public static String Decrypt(String s,int k){
-        String res="";
-        for(int i=0;i<s.length();i++){
-            int f=0;
-            char a=s.charAt(i);
-            if(Character.isUpperCase(a)) f=1;
-            a=Character.toLowerCase(a);
-            int p=(int)(a-'a');
-            int c=((p-k)%26);
-            if(c<0) c+=26;
-            char ch='a';
-            if(f==1) ch='A';
-            res+=(char)(c+ch);
-        }
-        return res;
-    }
-    
 	public static void main(String[] args) {
 	Scanner x=new Scanner(System.in);
-	System.out.print("Data: ");
 	String s=x.nextLine();
-	System.out.print("Key: ");
-	int k=x.nextInt();
-	String en=encryp(s,k);
-	System.out.println("Encrypted: "+en);
-	System.out.print("Decrypted: "+Decrypt(en,k));
+	int n=x.nextInt();
+	String r="";
+	char d;
+	for(int i=0;i<s.length();i++){
+	    if(Character.isUpperCase(s.charAt(i))){
+	    d=(char)(((s.charAt(i)-64)+n)%26);
+	    r+=(char)(d+64);
+	    }else{
+	    d=(char)(((s.charAt(i)-96)+n)%26);
+	    r+=(char)(d+96);
+	    }
+	}
+	System.out.println(r);
 	}
 }
